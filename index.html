@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Password</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Generate a <br>Random Password</h1>
+    </div> 
+    <div class="display">
+        <input type="text" id="password" placeholder="password">
+        <img src="img1" alt="Random Image" onclick="copyPassword()">
+    </div> 
+    <button onclick="generatePassword()">Generate</button>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Add any additional setup code here
+        });
+
+        function generatePassword() {
+            var length = 12;
+            var uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            var lowercase = "abcdefghijklmnopqrstuvwxyz";
+            var numbers = "0123456789";
+            var symbols = "!@#$%^&*()_-+=<>?/";
+
+            var allCharacters = uppercase + lowercase + numbers + symbols;
+
+            var password = '';
+            for (var i = 0; i < length; i++) {
+                var randomIndex = Math.floor(Math.random() * allCharacters.length);
+                password += allCharacters.charAt(randomIndex);
+            }
+
+            document.getElementById('password').value = password;
+        }
+
+        function copyPassword() {
+            var passwordInput = document.getElementById('password');
+            passwordInput.select();
+            document.execCommand('copy');
+            alert('Password copied to clipboard!');
+            
+         // Clear the input field after copying
+    passwordInput.value = ''
+        }
+    </script>
+</body>
+</html>
